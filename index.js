@@ -1,10 +1,17 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+
 const port = 3000;
+
 app.use(cors());
+app.use(express.json());
+
 app.get("/", (req, res) => {
-  res.send("hello world how are you?    ");
+  res.send("hello world how are you?");
+});
+app.post("/users", (req, res) => {
+  console.log(req.body);
 });
 
 app.get("/users", (req, res) => {
@@ -14,4 +21,7 @@ app.get("/users", (req, res) => {
     { name: "Doe", age: 40 },
   ]);
 });
-app.listen(port);
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
